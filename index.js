@@ -1,9 +1,12 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown');
+const generate = require('./utils/generateMarkdown');
+
+// const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
+
 const questions = [
     {
         type: 'input',
@@ -13,7 +16,7 @@ const questions = [
     {
         type: 'input',
         message: 'Give a description of the application',
-        name: 'description ',
+        name: 'description',
     },
     {
         type: 'input',
@@ -31,9 +34,13 @@ const questions = [
         name: 'contributing',
     },
     {
-        type: 'input',
-        message: 'Select a license for this product. Choose None if you dont have one.',
+        type: 'list',
+        message: 'Choose a license, or select None',
         name: 'license',
+        choices: [
+            'Apache 2.0', 'MIT', 'GPL v3', 'BSD 2-Clause', 'BSD 3-Clause', 'None'
+        ],
+        default: 'None',
     },
     {
         type: 'input',
@@ -45,13 +52,12 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, response) {
     inquirer
-    .prompt(questions)
-    .then((response) =>
-    fs.writeFile('README.md', generateMarkdown(response), (err) =>
-    err ? console.log(err) : console.log('success'))
-    )
-    
-}
+        .prompt(questions).then((data) => {
+            fs.writeFile('README.md', generate.generateMarkdown(data), (err) =>
+                err ? console.log(err) : console.log('success'))
+        });
+
+};
 
 writeToFile();
 
