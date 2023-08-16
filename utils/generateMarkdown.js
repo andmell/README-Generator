@@ -52,22 +52,22 @@ function renderLicenseLink(license) {
 
 function renderLicenseSection(license) {
   if (license == 'None') {
-    return "";
+    return ``;
   } else {
-    return `[![License](${renderLicenseBadge(license)})](${renderLicenseLink(license)})`
+    return `This application is using the ${license} license.`
   }
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
-
+  ${data.license !== 'None' ? `[![License](${renderLicenseBadge(data.license)})](${renderLicenseLink(data.license)})` : ``}
   ## Description
   ${data.description}
   ## Table of Contents
   - [Installation](#installation)
   - [Usage](#usage)
-  - [License](#license)
+  ${data.license !== "None" ? `- [License](#license)`: ''}
   - [Contributing Tests](#contributing-tests)
   - [Questions](#questions)
 
@@ -76,12 +76,13 @@ function generateMarkdown(data) {
 
   ### Usage
   ${data.usage}
-  ### License
+  ${data.license !== "None" ? `### License`: ''}
   ${renderLicenseSection(data.license)}
   ### Contributing Tests
   ${data.contributing}
   ### Questions
-  ${data.questions}
+  If you have any questions, feel free to reach me on [GitHub](https://www.github.com/${data.GitHub}) <br>
+  Alternatively, you could also email me at ${data.Email}.
 
 `;
 };

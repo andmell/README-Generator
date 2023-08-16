@@ -44,8 +44,13 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Enter any questions you might have for this README.',
-        name: 'questions',
+        message: 'Enter your GitHub username',
+        name: 'GitHub',
+    },
+    {
+        type: 'input',
+        message: 'Enter your E-Mail address',
+        name: 'Email',
     },
 ];
 
