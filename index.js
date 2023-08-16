@@ -38,7 +38,7 @@ const questions = [
         message: 'Choose a license, or select None',
         name: 'license',
         choices: [
-            'Apache 2.0', 'MIT', 'GPL v3', 'BSD 2-Clause', 'BSD 3-Clause', 'None'
+            'None', 'Apache 2.0', 'MIT', 'GPL v3', 'BSD 2-Clause', 'BSD 3-Clause' 
         ],
         default: 'None',
     },
